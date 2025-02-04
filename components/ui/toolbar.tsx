@@ -1,4 +1,7 @@
+"use client"
 import { Editor } from '@tiptap/react';
+import { useState, useEffect } from 'react';
+
 // Remove unused imports from the toolbar:
 import {
   BoldIcon,
@@ -39,11 +42,19 @@ const FONT_FAMILIES = [
 // const FONT_SIZES = ['12px', '14px', '16px', '18px', '20px', '24px', '28px', '32px'];
 
 export function Toolbar({ editor }: ToolbarProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
   if (!editor) return null;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const setLink = () => {
     const previousUrl = editor.getAttributes("link").href;
-    const url = (typeof window !== "undefined") && window.prompt("Enter the URL", previousUrl);
+    let url =null;
+    if(isMounted){
+       url = (typeof window !== "undefined") && window.prompt("Enter the URL", previousUrl);
+    }
     if (url === null) return;
     
     if (url === "") {
@@ -76,7 +87,7 @@ export function Toolbar({ editor }: ToolbarProps) {
   };
 
   return (
-    <div className="flex flex-wrap gap-1 p-2 border rounded-t-lg bg-muted w-[90%] items-center">
+    <div className="flex flex-wrap gap-1 p-2 border rounded-t-lg bg-muted w-[90%] items-center ">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="sm">
@@ -84,7 +95,7 @@ export function Toolbar({ editor }: ToolbarProps) {
             Sections
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className='z-[100]'>
           <DropdownMenuItem onClick={() => addSection('summary')}>Professional Summary</DropdownMenuItem>
           <DropdownMenuItem onClick={() => addSection('experience')}>Work Experience</DropdownMenuItem>
           <DropdownMenuItem onClick={() => addSection('education')}>Education</DropdownMenuItem>
@@ -99,7 +110,7 @@ export function Toolbar({ editor }: ToolbarProps) {
             Font
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="min-w-[120px]">
+        <DropdownMenuContent className="min-w-[120px] z-[100]">
           {FONT_FAMILIES.map((font) => (
             <DropdownMenuItem
               key={font.value}
@@ -122,6 +133,7 @@ export function Toolbar({ editor }: ToolbarProps) {
       </DropdownMenu>
 
 <ColorPicker
+
   label="Text Color"
   color={editor.getAttributes('textStyle').color || '#000000'}
   onChange={(color) => editor.chain().focus().setColor(color).run()}

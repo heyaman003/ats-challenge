@@ -150,8 +150,8 @@ export async function POST(
     const isModifyMode = mode === "modify";
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
-      temperature: isModifyMode ? 0.3 : 0.5,
-      max_tokens: isModifyMode ? 1500 : 600,
+      temperature: isModifyMode ? 0.3 : 0.7,
+      max_tokens: isModifyMode ? 2000 : 600,
       messages: [
         {
           role: "system",

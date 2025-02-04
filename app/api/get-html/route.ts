@@ -17,7 +17,8 @@ export async function POST(req: Request) {
         }
 
         // Ensure the tmp directory exists
-        const tempDir = path.join(process.cwd(), 'tmp');
+        // const tempDir = path.join(process.cwd(), 'tmp');
+        const tempDir = '/tmp'; // Vercel allows writes only to `/tmp`
         try {
             await mkdir(tempDir, { recursive: true });
         } catch (err) {
@@ -66,8 +67,12 @@ export async function POST(req: Request) {
         // Extract paragraphs
         let paragraphs: string[] = [];
         $("p").each((_, element) => {
-            const html = $(element).html()?.trim().toString() || '';
-            html && paragraphs.push(html);
+            console.log("i come here ---")
+            if($(element).html()?.trim() !==undefined){
+                const html = $(element).html()?.trim()?.toString() || '';
+                 paragraphs.push(html);
+            }
+            
         });
         paragraphs = paragraphs.filter((line) => line.trim().length > 0);
         // Cleanup the PDF and all HTML files in the tmp directory after processing

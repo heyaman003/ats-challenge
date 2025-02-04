@@ -42,7 +42,7 @@ const getEditorContent = (htmlResponse: string[]): string => {
     .join('');
 };
 
-export function TiptapEditor({
+export default function TiptapEditor({
   content,
   onChange,
 }: TiptapEditorProps) {

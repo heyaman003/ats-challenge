@@ -4,11 +4,22 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TiptapEditor } from "@/components/ui/tiptap-editor";
-import AtsChecker from "@/components/function/atscheecker";
+// import TiptapEditor  from "@/components/ui/tiptap-editor";
+// import AtsChecker from "@/components/function/atscheecker";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 // import { ThemeToggle } from "@/components/ui/theme-toggle";
+// Dynamically import client-side only components
+const TiptapEditor = dynamic(
+  () => import("@/components/ui/tiptap-editor"),
+  { ssr: false }
+);
+
+const AtsChecker = dynamic(
+  () => import("@/components/function/atscheecker"),
+  { ssr: false }
+);
 
 interface ChatMessage {
   id?: string;

@@ -47,7 +47,6 @@ export default function TiptapEditor({
   onChange,
 }: TiptapEditorProps) {
   const [isMounted, setIsMounted] = useState(false);
-  // This flag prevents resetting user content after initialization.
   const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
@@ -74,7 +73,7 @@ export default function TiptapEditor({
         },
       }),
       Link.configure({
-        openOnClick: false, // Optional settings
+        openOnClick: false, 
         autolink: true,
       }),
       TextAlign.configure({
@@ -86,7 +85,6 @@ export default function TiptapEditor({
       Heading.configure({
         levels: [2, 3],
       }),
-      // Then add to extensions array:
       Table.configure({
         resizable: true, // Enable resizable columns
         HTMLAttributes: {
@@ -106,9 +104,7 @@ FontFamily,
       Italic,
       Underline,
      
-      // Add more extensions as needed for your resume editor...
     ],
-    // Use the converted content for initial rendering.
     content: Array.isArray(content) ?getEditorContent(content):content,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
@@ -124,11 +120,10 @@ FontFamily,
   useEffect(() => {
     if (editor && content && hasInitialized) {
       const newContent = Array.isArray(content) ? getEditorContent(content) : content;
-      const currentContent = editor.getHTML(); // Get current content of the editor
+      const currentContent = editor.getHTML(); 
   
-      // Only set content if the new content is different from the current content
       if (newContent !== currentContent) {
-        editor.commands.setContent(newContent, false); // 'false' to avoid adding to history
+        editor.commands.setContent(newContent, false); 
       }
     }
   }, [content, editor, hasInitialized]);
@@ -147,22 +142,16 @@ FontFamily,
     console.log(editorContent, "editorContent");
   
     if (editorContent) {
-      // Convert the string into an HTMLElement
       const contentDiv = document.createElement('div');
       contentDiv.innerHTML = editorContent;
       
-      // Pass the contentDiv to the generateResumePdf function
       await generateResumePdf(contentDiv);
     }
   };
   
   return (
     <div className="space-y-4 h-full overflow-y-auto relative"> 
-   {/* <Link href="/"> 
-   <Button  >
-    <ArrowBigLeft/>Home
-      </Button> 
-      </Link> */}
+  
     <div className="flex justify-between sticky top-0 z-[100]">
    
         <Toolbar   editor={editor} />

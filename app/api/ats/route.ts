@@ -1,4 +1,5 @@
 // app/api/calculate-ats/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 import { calculateATSScore } from "@/lib/atscalculator";
 

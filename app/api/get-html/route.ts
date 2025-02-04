@@ -3,7 +3,6 @@ import { writeFile, unlink, readFile, mkdir, readdir } from 'fs/promises';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
 import { Poppler } from 'node-poppler';
-// import { access } from 'fs/promises';
 
 export const runtime = 'nodejs';
 
@@ -17,8 +16,8 @@ export async function POST(req: Request) {
         }
 
         // Ensure the tmp directory exists
-        // const tempDir = path.join(process.cwd(), 'tmp');
-        const tempDir = '/tmp'; // Vercel allows writes only to `/tmp`
+        const tempDir = path.join(process.cwd(), 'tmp');
+        // const tempDir = '/tmp'; // Vercel allows writes only to `/tmp`
         try {
             await mkdir(tempDir, { recursive: true });
         } catch (err) {

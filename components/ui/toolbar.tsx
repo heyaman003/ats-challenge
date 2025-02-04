@@ -1,8 +1,6 @@
 "use client"
 import { Editor } from '@tiptap/react';
 import { useState, useEffect } from 'react';
-
-// Remove unused imports from the toolbar:
 import {
   BoldIcon,
   ItalicIcon,
@@ -21,12 +19,10 @@ import {
   TextCursorInputIcon,
   TypeIcon,
 } from 'lucide-react';
-// Remove PaletteIcon and SquareCodeIcon
 import { Toggle } from '@/components/ui/toggle';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { ColorPicker } from '@/components/ui/colorPicker';
-// import { Input } from '@/components/ui/input';
 
 interface ToolbarProps {
   editor: Editor | null;
@@ -39,7 +35,6 @@ const FONT_FAMILIES = [
   { label: 'Georgia', value: 'Georgia' },
 ];
 
-// const FONT_SIZES = ['12px', '14px', '16px', '18px', '20px', '24px', '28px', '32px'];
 
 export function Toolbar({ editor }: ToolbarProps) {
   const [isMounted, setIsMounted] = useState(false);
@@ -79,9 +74,9 @@ export function Toolbar({ editor }: ToolbarProps) {
   const insertTable = () => {
     editor.chain().focus()
       .insertTable({
-        rows: 2, // Default number of rows
-        cols: 3, // Default number of columns
-        withHeaderRow: true, // Include a header row
+        rows: 2, 
+        cols: 3, 
+        withHeaderRow: true, 
       })
       .run();
   };
@@ -234,7 +229,6 @@ export function Toolbar({ editor }: ToolbarProps) {
       >
         <ListOrderedIcon className="h-4 w-4" />
       </Toggle>
-      {/* You can add additional controls such as strikethrough, undo/redo, etc. */}
       <Toggle
         size="sm"
         pressed={editor.isActive('strike')}

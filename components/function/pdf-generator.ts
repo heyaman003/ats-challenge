@@ -2,17 +2,14 @@ import html2pdf from 'html2pdf.js';
 import logo from '@/company-logo.png';
 
 export const generateResumePdf = async (pdfContainer: HTMLElement) => {
-  // Clone the original content to restore it later
   const originalContent = pdfContainer.cloneNode(true) as HTMLElement;
 
-  // Insert the header image at the top of the PDF container
   const firstPageHeader = document.createElement('img');
-  firstPageHeader.src = logo.src; // Use the imported logo
+  firstPageHeader.src = logo.src; 
   firstPageHeader.style.paddingTop = '10px';
   firstPageHeader.style.width = '100%'; // Adjust width as needed
   pdfContainer.insertBefore(firstPageHeader, pdfContainer.firstChild);
 
-  // Dynamically add page breaks based on the container's children heights
   const children = [...pdfContainer.children] as HTMLElement[];
   const maxPageHeight = 1070; // Maximum height for one page
   let currentPageHeight = firstPageHeader.offsetHeight; // Start with the header height
@@ -60,18 +57,18 @@ export const generateResumePdf = async (pdfContainer: HTMLElement) => {
         margin: 10,
         filename: 'resume.pdf',
         enableWebFonts: true, // Ensures web fonts are embedded
-        image: { type: 'jpeg', quality: 1 }, // High quality
+        image: { type: 'jpeg', quality: 1 },
         html2canvas: {
-          scale: 2, // Increase resolution
+          scale: 2, 
           useCORS: true,
           letterRendering: true,
-          backgroundColor: '#fff', // Ensure white background
+          backgroundColor: '#fff', 
         },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
       })
       .save();
   } finally {
     // Restore the original content
-    // pdfContainer.replaceWith(originalContent);
+    pdfContainer.replaceWith(originalContent);
   }
 };

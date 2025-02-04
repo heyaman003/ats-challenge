@@ -5,7 +5,7 @@ import { Redis } from "@upstash/redis";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// Rate limiter configuration
+// Rate limiting----using Redis
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
   limiter: Ratelimit.slidingWindow(5, "60 s"),
@@ -13,10 +13,8 @@ const ratelimit = new Ratelimit({
 });
 
 const getClientIdentifier = (req: NextRequest) => {
-  // Get IP from Vercel headers
   const ip = req.headers.get("x-forwarded-for");
 
-  // Fallback for local development
   if (process.env.NODE_ENV === "development") {
     return ip?.split(",")[0]?.trim() || "127.0.0.1";
   }
@@ -28,7 +26,7 @@ const getClientIdentifier = (req: NextRequest) => {
   );
 };
 
-// ANONYMIZATION AGENT
+// AnonymizationAgent for securing presnoal info
 class AnonymizationAgent {
   private static patterns = {
     email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g,
@@ -50,11 +48,11 @@ class AnonymizationAgent {
 
   static anonymizeStructuredContent(content: any[]): any[] {
     // console.log(content,"the contnet is-----")
-    let x = content.map((page) => ({
+    let basicAnonymizationAgent = content.map((page) => ({
       content: this.basicAnonymize(page),
     }));
     // console.log(x,"after chaning---")
-    return x;
+    return basicAnonymizationAgent;
   }
 
   static async deepAnonymize(text: string): Promise<string> {
@@ -127,7 +125,7 @@ export async function POST(
       }
       processedContent = AnonymizationAgent.basicAnonymize(cvContent);
     } else if (Array.isArray(cvContent)) {
-      // Ensure cvContent is a non-empty array
+
       if (cvContent.length === 0) {
         return NextResponse.json(
           { error: "cvContent cannot be an empty array" },
@@ -146,7 +144,6 @@ export async function POST(
       );
     }
 
-    // Rest of your OpenAI logic...
     const isModifyMode = mode === "modify";
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",

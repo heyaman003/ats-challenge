@@ -1,94 +1,62 @@
-# AI-Powered CV: Anonymization, Reformatting & Agentic AI
+# Resume AI Editor
 
-**Objective**  
-Create a **Next.js** web application that:
+## Overview
+The Resume AI Editor is a web application that allows users to upload their resumes, modify them using an advanced text editor, and interact with AI for career-related queries. Users can also edit their resumes directly within the application and download the modified versions in PDF format.
 
-1. **Parses and Anonymizes** a CV (removing personal data while retaining minimal essential info).
-2. **Reformats** the CV into a consistent, user-friendly layout (with clear headings, bold text, etc.).
-3. Displays the **updated CV** in a **rich text editor**, allowing the user to make final adjustments.
-4. Incorporates a **required** agentic AI component—where you decide how an AI agent can further aid the CV process or potentially enhance the next step in the recruitment pipeline.
+## Features
 
-We’ll provide:
+### 1. Upload Resume
+- Users can upload their resume in PDF format.
+- Uploaded files are processed and converted into editable text.
 
-- **OpenAI API Key**.
-- **Sample CV File**.
-- A reference for **desired final CV styling** (headings, bold text, spacing).
+### 2. Modify Resume
+- Integrated rich-text editor for resume modifications.
+- Support for text formatting (bold, italic, underline, bullet points, etc.).
+- Option to add or remove sections dynamically.
+- AI-powered grammar checking and resume optimization using OpenAI.
 
----
+### 3. AI Career Assistance
+- AI-powered chatbot for career advice.
+- Resume improvement suggestions.
+- Personalized job recommendations based on skills and experience.
+- Resume checking and feedback based on user prompts using OpenAI.
 
-## 1. Core Tasks
+### 4. PDF Editing
+- Edit the extracted text directly.
+- Save modifications and export the updated resume as a PDF.
+- Support for multiple templates and layouts.
 
-1. **CV Input**
+### 5. Download Resume
+- Export the modified resume in PDF format.
+- Option to save different versions of the resume.
 
-   - Let the user upload a CV or select a provided sample.
-   - How you parse the file and retrieve text is up to you.
+### 6. Multi-Feature Text Editor
+- Advanced text editor with formatting options.
+- Real-time preview of resume changes.
+- Undo/Redo functionality for seamless editing.
 
-2. **Anonymization**
+## Technical Stack
+- **Frontend:** Next.js, MUI, Tailwind CSS
+- **Backend:** Node.js
+- **AI Integration:** OpenAI API for resume modification, grammar checking, and AI conversations
+- **File Handling:** Multer, Poppler for PDF processing
+- **Rate Limiting:** Redis for managing request limits
 
-   - Remove personally identifiable information, retaining only minimal details if needed (e.g., a first name).
-   - Document any assumptions or prompts you use.
+## Usage Guide
+1. **Upload your resume** by clicking the upload button.
+2. **Modify your resume** using the rich-text editor.
+3. **Interact with AI** for career guidance, resume improvement, and grammar checking.
+4. **Download the updated resume** in PDF format.
 
-3. **Reformatting**
+## Future Enhancements
+- AI-powered resume scoring system.
+- LinkedIn integration for importing job experience.
+- Auto-generated resume templates based on job roles.
 
-   - Organize the CV into a **consistent** layout—headings, bold text, bullet points—matching our provided sample-formatted-cv.pdf.
-
-4. **User Review**
-
-   - Show the updated CV in a **rich text editor**, so the user can adjust or finalize it before completion.
-
-5. **Agentic AI**
-   - Use a multi-step or “agent-like” approach in at least one aspect of this project—whether it’s during anonymization, reformatting, or another creative step in the recruitment pipeline.
-   - We encourage you to **be inventive** about how an AI agent might assist or add value here.
-
----
-
-## 2. Technical Guidelines
-
-- **Framework**: Next.js (preferably using the App Router).
-- **UI Library**: You may use [shadcn/ui](https://ui.shadcn.com/) for components.
-- **Deployment**: We’ll review your **Vercel** deployment—please provide the live URL.
-- **Testing**: Include at least some **unit tests** to demonstrate quality.
-
----
-
-## 3. Submission Guidelines
-
-1. **Repository & Code**
-
-   - Fork or clone this repo (or create a private one and invite us).
-   - Organize your code however you see fit.
-   - When complete, either:
-     - Share your forked repository URL with us
-     - Submit a pull request to this repository
-     - If using a private repository, invite us as collaborators
-
-2. **Implementation**
-
-   - Complete the tasks (anonymization, reformatting, rich text editing) while integrating at least one **agentic AI** step.
-   - Document your approach in a readable file for review.
-
-3. **Deployment**
-
-   - Deploy to **Vercel** and share the link.
-   - Ensure we can test the flow end to end (upload → anonymize → reformat → review → final).
-
-4. **Testing & Documentation**
-   - Provide a **quick start** guide for installing/running.
-   - Show us how to run your tests.
+## Deployment
+- Hosted on Vercel for seamless scalability.
+- Source code available on GitHub.
 
 ---
+This tool aims to streamline resume management and enhance career opportunities with AI assistance.
 
-## 4. Evaluation Criteria
-
-1. **Functionality & Usability**: Does the CV anonymization and reformatting work? Is the editor intuitive?
-2. **Agentic AI**: Have you implemented a multi-step or agent-like process in at least one stage?
-3. **Code Quality & Organization**: Is the code maintainable, readable, and structured well?
-4. **Testing & Documentation**: Do you have meaningful tests, and are setup/deployment instructions clear?
-5. **Styling & UX**: Are headings, bold text, and layout consistent with the modern design principles?
-
----
-
-## 5. Final Notes
-
-- Feel free to **innovate**—whether you integrate AI for next-step recruitment tasks, sophisticated parsing, or additional features.
-- If you have any questions or clarifications, reach out.

@@ -1,9 +1,11 @@
-import Image from "next/image";
+import { TypewriterEffectSmoothDemo } from "@/components/function/typewritter-wrapper";
+// import { ThemeProvider } from "@/components/theme-provider";
+// import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function Home() {
   return (
-    <div>
-      <h1>ATS Challenge</h1>
-    </div>
+    <main>  
+     <TypewriterEffectSmoothDemo />
+    </main>
   );
 }

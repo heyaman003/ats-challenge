@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         // Add a timestamp to ensure unique filenames
         const timestamp = Date.now();
         const tempFilePath = path.join(tempDir, `${originalName}-${timestamp}`);
-        console.log(tempDir, originalName, tempFilePath, "the issue");
+        // console.log(tempDir, originalName, tempFilePath, "the issue");
 
         // Write uploaded PDF
         const arrayBuffer = await file.arrayBuffer();
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
         // Extract paragraphs
         let paragraphs: string[] = [];
         $("p").each((_, element) => {
-            console.log("i come here ---")
+            // console.log("i come here ---")
             if($(element).html()?.trim() !==undefined){
                 const html = $(element).html()?.trim()?.toString() || '';
                  paragraphs.push(html);

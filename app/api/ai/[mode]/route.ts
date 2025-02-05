@@ -71,7 +71,7 @@ class AnonymizationAgent {
         },
       ],
     });
-    console.log("ai response", response.choices[0].message);
+    // console.log("ai response", response.choices[0].message);
     return response.choices[0].message.content || text;
   }
 }

@@ -46,7 +46,7 @@ export async function POST(req: Request) {
         // Clean up temporary files
         await unlink(tempFilePath);
         await unlink(outputFilePath);
-        console.log(htmlContent,"the content is ")
+        // console.log(htmlContent,"the content is ")
         return new NextResponse(htmlContent, {
             headers: { "Content-Type": "text/html" }
         });

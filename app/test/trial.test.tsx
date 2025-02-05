@@ -1,8 +1,9 @@
+
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import CVEditor from "../trial/page"; // Adjust the path if needed
 import "@testing-library/jest-dom";
-
+import { jest } from "@types/jest";
 
 // Mock dynamic imports for TiptapEditor and AtsChecker so they render simple placeholders.
 jest.mock("@/components/ui/tiptap-editor", () => () => (
